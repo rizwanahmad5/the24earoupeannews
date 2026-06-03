@@ -1,0 +1,358 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-navy: var(--navy);
+  --color-silver: var(--silver);
+  --color-gold: var(--gold);
+  --color-glass: var(--glass);
+  --color-glass-border: var(--glass-border);
+
+  --animate-ticker: ticker 40s linear infinite;
+  --animate-float-slow: float-slow 8s ease-in-out infinite;
+  --animate-shimmer: shimmer 3s linear infinite;
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-fade-in: fade-in 0.6s ease-out both;
+  --animate-scale-in: scale-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-slide-down: slide-down 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-glow-pulse: glow-pulse 3.2s ease-in-out infinite;
+  --animate-tilt: tilt 6s ease-in-out infinite;
+}
+
+:root,
+.dark {
+  --radius: 0.75rem;
+
+  /* Brand tokens */
+  --navy: oklch(0.18 0.05 270);             /* #0A0F2C deep navy */
+  --silver: oklch(0.82 0.01 250);           /* #C0C0C0 */
+  --gold: oklch(0.78 0.13 85);              /* #D4AF37 */
+  --glass: oklch(0.22 0.05 270 / 0.45);
+  --glass-border: oklch(0.82 0.01 250 / 0.18);
+
+  --background: oklch(0.12 0.03 270);
+  --foreground: oklch(0.96 0.01 250);
+  --card: oklch(0.18 0.04 270);
+  --card-foreground: oklch(0.96 0.01 250);
+  --popover: oklch(0.18 0.04 270);
+  --popover-foreground: oklch(0.96 0.01 250);
+  --primary: oklch(0.78 0.13 85);
+  --primary-foreground: oklch(0.15 0.04 270);
+  --secondary: oklch(0.25 0.05 270);
+  --secondary-foreground: oklch(0.96 0.01 250);
+  --muted: oklch(0.22 0.04 270);
+  --muted-foreground: oklch(0.72 0.02 250);
+  --accent: oklch(0.78 0.13 85);
+  --accent-foreground: oklch(0.15 0.04 270);
+  --destructive: oklch(0.58 0.22 25);
+  --destructive-foreground: oklch(0.98 0.01 250);
+  --border: oklch(0.82 0.01 250 / 0.14);
+  --input: oklch(0.82 0.01 250 / 0.18);
+  --ring: oklch(0.78 0.13 85);
+}
+
+/* Light mode — deep, rich, high-contrast luxury */
+:root.light {
+  --navy: oklch(0.22 0.09 270);             /* deeper royal navy */
+  --silver: oklch(0.42 0.03 250);           /* darker silver for legibility */
+  --gold: oklch(0.58 0.17 65);              /* burnished gold, saturated */
+  --glass: oklch(0.98 0.01 250 / 0.75);
+  --glass-border: oklch(0.22 0.09 270 / 0.22);
+
+  --background: oklch(0.96 0.012 80);       /* warm ivory, not flat white */
+  --foreground: oklch(0.15 0.07 270);       /* near-black navy text */
+  --card: oklch(0.99 0.005 80);
+  --card-foreground: oklch(0.15 0.07 270);
+  --popover: oklch(0.99 0.005 80);
+  --popover-foreground: oklch(0.15 0.07 270);
+  --primary: oklch(0.22 0.09 270);          /* deep navy primary */
+  --primary-foreground: oklch(0.98 0.01 80);
+  --secondary: oklch(0.90 0.02 80);
+  --secondary-foreground: oklch(0.15 0.07 270);
+  --muted: oklch(0.92 0.015 80);
+  --muted-foreground: oklch(0.32 0.04 270);
+  --accent: oklch(0.58 0.17 65);            /* gold accent */
+  --accent-foreground: oklch(0.15 0.07 270);
+  --destructive: oklch(0.52 0.24 25);
+  --destructive-foreground: oklch(0.98 0.005 250);
+  --border: oklch(0.22 0.09 270 / 0.16);
+  --input: oklch(0.22 0.09 270 / 0.22);
+  --ring: oklch(0.58 0.17 65);
+}
+
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50%      { transform: translateY(-12px) translateX(6px); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes fade-up {
+  0%   { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes scale-in {
+  0%   { opacity: 0; transform: scale(0.94); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes slide-down {
+  0%   { opacity: 0; transform: translateY(-12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 1px oklch(0.78 0.13 85 / 0.25), 0 0 24px -6px oklch(0.78 0.13 85 / 0.35); }
+  50%      { box-shadow: 0 0 0 1px oklch(0.78 0.13 85 / 0.55), 0 0 56px -4px oklch(0.78 0.13 85 / 0.7); }
+}
+@keyframes tilt {
+  0%, 100% { transform: rotate(-0.6deg); }
+  50%      { transform: rotate(0.6deg); }
+}
+
+@keyframes card-slide-3d {
+  0% {
+    opacity: 0;
+    transform: translateX(80px) rotateY(-18deg) scale(0.92);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-6px) rotateY(3deg) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) rotateY(0deg) scale(1);
+  }
+}
+
+.card-slide-in {
+  animation: card-slide-3d 0.8s cubic-bezier(0.22, 0.9, 0.36, 1) both;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  transition: transform 0.45s cubic-bezier(0.22, 0.9, 0.36, 1), box-shadow 0.45s ease;
+}
+.card-slide-in:hover {
+  transform: perspective(800px) rotateY(-4deg) rotateX(3deg) translateY(-8px) scale(1.03);
+  box-shadow: 0 30px 60px -15px oklch(0 0 0 / 0.4), 0 0 0 1px var(--gold);
+}
+
+.carousel-card {
+  transition: transform 0.5s cubic-bezier(0.22, 0.9, 0.36, 1), box-shadow 0.5s ease;
+}
+.carousel-card:hover {
+  transform: perspective(800px) rotateY(-3deg) rotateX(2deg) translateY(-6px) scale(1.02);
+  z-index: 10;
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background-color: var(--glass);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    box-shadow:
+      0 1px 0 0 oklch(1 0 0 / 0.06) inset,
+      0 20px 60px -20px oklch(0 0 0 / 0.5);
+  }
+
+  .gold-glow {
+    box-shadow:
+      0 0 0 1px oklch(0.78 0.13 85 / 0.35),
+      0 0 40px -10px oklch(0.78 0.13 85 / 0.5);
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(120deg, var(--gold) 0%, var(--silver) 50%, var(--gold) 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 6s linear infinite;
+  }
+
+  .hairline {
+    background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+    height: 1px;
+  }
+
+  .prose-article {
+    color: var(--color-foreground);
+    line-height: 1.8;
+  }
+  .prose-article p { margin: 1.1em 0; }
+  .prose-article h2 { font-size: 1.75rem; margin: 2em 0 0.5em; }
+  .prose-article h3 { font-size: 1.35rem; margin: 1.6em 0 0.4em; }
+  .prose-article a { color: var(--gold); text-decoration: underline; text-underline-offset: 4px; }
+  .prose-article blockquote {
+    border-left: 3px solid var(--gold);
+    padding-left: 1rem;
+    margin: 1.5em 0;
+    font-style: italic;
+    color: var(--muted-foreground);
+  }
+  .prose-article ul, .prose-article ol { margin: 1em 0; padding-left: 1.5em; }
+  .prose-article ul { list-style: disc; }
+  .prose-article ol { list-style: decimal; }
+  .prose-article img { border-radius: 0.75rem; margin: 1.5em 0; }
+  .prose-article code {
+    background: var(--muted);
+    padding: 0.15em 0.4em;
+    border-radius: 0.3em;
+    font-size: 0.9em;
+  }
+
+  /* Interactive utilities */
+  .hover-lift {
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 60px -20px oklch(0 0 0 / 0.35);
+  }
+  .hover-tilt {
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+  .hover-tilt:hover {
+    transform: perspective(900px) rotateX(3deg) rotateY(-3deg) scale(1.02);
+  }
+  .hover-glow:hover {
+    box-shadow: 0 0 0 1px var(--gold), 0 0 40px -6px var(--gold);
+  }
+  .story-link {
+    position: relative;
+    display: inline-block;
+  }
+  .story-link::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -2px;
+    height: 1.5px; width: 100%;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .story-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  .nav-capsule {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.875rem;
+    color: var(--silver);
+    opacity: 0.85;
+    border-radius: 0.5rem 0.5rem 0 0;
+    border: 1px solid transparent;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .nav-capsule:hover {
+    background-color: var(--glass);
+    color: var(--gold);
+    opacity: 1;
+  }
+  .nav-capsule-active {
+    background-color: var(--glass) !important;
+    border: 1px solid oklch(0.78 0.13 85 / 0.2) !important;
+    border-bottom: 2px solid var(--gold) !important;
+    color: var(--gold) !important;
+    opacity: 1 !important;
+    box-shadow: 0 4px 14px -2px oklch(0.78 0.13 85 / 0.35);
+  }
+  :root.light .nav-capsule-active {
+    border-color: oklch(0.58 0.17 65 / 0.15) !important;
+    border-bottom-color: var(--gold) !important;
+    box-shadow: 0 4px 10px -2px oklch(0.58 0.17 65 / 0.2);
+  }
+  .shimmer-bg {
+    background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2.5s linear infinite;
+  }
+}
+
+/* Light-mode ticker: black bg + golden text for premium contrast.
+   Outside @layer so it beats Tailwind utility classes. */
+:root.light .ticker-bar {
+  background-color: oklch(0.1 0.02 270) !important;
+  border-bottom-color: oklch(0.58 0.17 65 / 0.3) !important;
+}
+:root.light .ticker-badge {
+  background-color: oklch(0.58 0.17 65 / 0.18) !important;
+  color: oklch(0.68 0.18 65) !important;
+}
+:root.light .ticker-text {
+  color: oklch(0.72 0.16 70) !important;
+}
+:root.light .ticker-text .text-gold {
+  color: oklch(0.68 0.18 65) !important;
+}
+
+/* Reveal-on-scroll utility (paired with IntersectionObserver if needed; safe default = visible) */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2,0.8,0.2,1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
